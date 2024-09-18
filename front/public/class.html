@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+    <title>Classes et Spécialisations</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+    <script defer src="./js/apps/classApp.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <a class="title is-1 my-5" href="/">RPG Character Builder</a>
+  </header>
+
+  <main>
+    <div class="header-container">
+      <a class="title is-3 my-5 header-content" href="/primaryskill.html">Compétences Primaires</a>
+      <a class="title is-3 my-5 header-content" href="/magic.html">Magies</a>
+      <a class="title is-3 my-5 header-content" href="/race.html">Races</a>
+      <a class="title is-3 my-5 header-content" href="/primarystatistic.html">Statistiques Primaires</a>   
+    </div>
+
+    <div class="title is-2 my-5"><u>Classes et Spécialisations</u></div>
+
+    <div class="flex-container">
+    <div id="classes-container" class="class-container"></div>
+
+    <!-- Add a class button -->
+    <section class="none message add-container">
+      <div class="message-header message-plus">
+        <div>Ajouter une classe</div>
+      </div>
+      <div class="message-body">
+        <button id="addClassButton" class="button is-large is-fullwidth"><i class="fas fa-plus"></i></button>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <!-- Add a class modal -->
+  <div class="modal" id="add-class-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Ajouter une classe</p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+
+        <div class="modal-card-body">
+          <label class="label">Nom</label>
+          <input class="input" type="text" name="label" placeholder="Nom de la classe">
+        </div>
+
+        <div class="modal-card-body">
+          <select id="magic_id" name="magic_id">
+            <option hidden class="magic-container" value="">Aucune magie</option>
+          </select>
+        </div>
+
+        <div class="modal-card-foot">
+          <button class="button is-success">Ajouter</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit a class modal -->
+  <div class="modal" id="edit-class-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Modifier une classe</p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+
+        <div class="modal-card-body">
+          <label class="label">Nom</label>
+          <input class="input" type="text" name="label" placeholder="Nom de la classe">
+        </div>
+
+        <span class="magical-span">Magie actuelle :</span>
+        <span class="magic-label magical-span"></span>
+        <select class="modal-card-body" id="edit_magic_id" name="magic_id">
+          <option value="">Aucune magie</option>
+          <option hidden class="new-magic-container" value=""></option>
+        </select>
+
+        <div class="modal-card-foot">
+          <button class="button is-success">Modifier</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+        <input type="hidden" name="id">
+      </form>
+    </div>
+  </div>
+
+<!-- Delete a class modal -->
+<div class="modal" id="delete-class-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Etes vous sûr de vouloir supprimer la classe : </p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+        <div class="modal-card-body">
+          <p><span slot="class-label"></span> ?</p>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-success">Confirmer</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+        <input type="hidden" name="id">
+      </form>
+    </div>
+  </div>
+
+  <!-- Add a specialization modal -->
+  <div class="modal" id="add-specialization-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Ajouter une spécialisation</p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+
+        <div class="modal-card-body">
+          <label class="label">Nom</label>
+          <input class="input" type="text" name="label" placeholder="Nom de la spécialisation">
+        </div>
+
+        <div class="modal-card-foot">
+          <button class="button is-success">Ajouter</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+        <input type="hidden" name="class_id">
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit a specialization modal -->
+  <div class="modal" id="edit-specialization-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Modifier une spécialisation</p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+
+        <div class="modal-card-body">
+          <label class="label">Nom</label>
+          <input class="input" type="text" name="label" placeholder="Nom de la spécialisation">
+        </div>
+
+        <div class="modal-card-foot">
+          <button class="button is-success">Modifier</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+        <input type="hidden" name="id">
+      </form>
+    </div>
+  </div>
+
+<!-- Delete a specialization modal -->
+<div class="modal" id="delete-specialization-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <form>
+        <div class="modal-card-head">
+          <p class="modal-card-title">Etes vous sûr de vouloir supprimer la spécialisation : </p>
+          <button class="delete close" type="button" aria-label="close"></button>
+        </div>
+        <div class="modal-card-body">
+          <p><span slot="specialization-label"></span> ?</p>
+        </div>
+        <div class="modal-card-foot">
+          <button class="button is-success">Confirmer</button>
+          <button class="button close" type="button">Annuler</button>
+        </div>
+        <input type="hidden" name="id">
+      </form>
+    </div>
+  </div>
+
+<!-- Template pour une classe -->
+<template id="class-template">
+  <section class="message class is-info" slot="class-id">
+    <div class="message-header">
+      <div class="class-label" slot="class-label"></div>
+
+      <div class="none card-header">
+        <span class="icon ml-2"><i class="fas fa-solid fa-pen"></i></span>
+      </div>
+
+      <div class="none card-header">
+        <span class="icon is-clickable" slot="add-card-button"><i class="fas fa-plus"></i></span>
+        <span class="icon has-text-danger ml-2 delete-card-button"><i class="fas fa-trash-alt"></i></span>
+      </div>
+    </div>
+
+    <div class="class-magic" slot="class-magic"></div>
+
+    <div class="message-body" slot="class-content">
+
+    </div>
+  </section>
+</template>
+
+<!-- Template pour une spécialisation -->
+<template id="specialization-template">
+  <article class="message2 specialization is-info" slot="specialization-id">
+    <div class="card-header">
+      <div class="specialization-label has-text-weight-medium" slot="specialization-label"></div>
+      <div class="none card-header">
+        <span class="icon ml-2"><i class="fas fa-solid fa-pen"></i></span>
+      </div>
+      <div class="none icon has-text-danger ml-2 delete-card-button"><i class="fas fa-trash-alt"></i></div>
+    </div>
+  </article>
+</template>
+
+</html>

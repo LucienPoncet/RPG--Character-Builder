@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+    <title>Races</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+    <script defer src="./js/apps/raceApp.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <a class="title is-1 my-5" href="/">RPG Character Builder</a>
+  </header>
+
+  <main>
+    <div class="header-container">
+      <a class="title is-3 my-5 header-content" href="/class.html">Classes et Spécialisations</a>
+      <a class="title is-3 my-5 header-content" href="/primaryskill.html">Compétences Primaires</a>
+      <a class="title is-3 my-5 header-content" href="/magic.html">Magies</a>
+      <a class="title is-3 my-5 header-content" href="/primarystatistic.html">Statistiques Primaires</a>   
+    </div>
+
+    <div class="title is-2 my-5"><u>Races</u></div>
+
+    <div class="flex-container">
+    <div id="races-container" class="race-container"></div>
+
+    <!-- Add a race button -->
+    <section class="none message add-container">
+      <div class="message-header message-plus">
+        <div>Ajouter une Race</div>
+      </div>
+      <div class="message-body">
+        <button id="addRaceButton" class="button is-large is-fullwidth"><i class="fas fa-plus"></i></button>
+      </div>
+    </section>
+  </div>
+  </main>
+
+
+<!-- Add a race modal -->
+<div class="modal" id="add-race-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form class="modal-form-body-scroll">
+      <div class="modal-card-head">
+        <p class="modal-card-title">Ajouter une race</p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+
+      <div class="modal-card-body">
+        <label class="label">Nom</label>
+        <input class="input" type="text" name="label" placeholder="Nom de la race">
+      </div>
+
+      <div class="modal-card-body">
+        <label class="skill">Compétence de race</label>
+        <input class="input" type="text" name="skill" placeholder="Compétence de la race">
+      </div>
+
+      <div class="modal-card-body" id="psk"><u>Compétences Primaires</u>
+      <div hidden class="modal-card-body" id="psk-big-container">
+        <select hidden id="primary_skill_id" name="primary_skill_id">
+          <option hidden class="psk-container" value=""></option>
+        </select>
+      </div>
+      </div>
+
+      <div class="modal-card-body" id="pst"><u>Statistiques Primaires</u>
+      <div hidden class="modal-card-body" id="pst-big-container">
+        <select hidden id="primary_statistic_id" name="primary_statistic_id">
+          <option hidden class="pst-container" value=""></option>
+        </select>
+      </div>
+      </div>
+
+      <div class="modal-card-foot">
+        <button class="button is-success">Ajouter</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit a race modal -->
+<div class="modal" id="edit-race-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form>
+      <div class="modal-card-head">
+        <p class="modal-card-title">Modifier une race</p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+
+      <div class="modal-card-body">
+        <label class="label">Nom</label>
+        <input class="input" type="text" name="label" placeholder="Nom de la race">
+      </div>
+
+      <div class="modal-card-body">
+        <label class="skill">Compétence de race</label>
+        <input class="input" type="text" name="skill" placeholder="Compétence de la race">
+      </div>
+
+      <div class="modal-card-foot">
+        <button class="button is-success">Modifier</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+      <input type="hidden" name="id">
+    </form>
+  </div>
+</div>
+
+<!-- Delete a race modal -->
+<div class="modal" id="delete-race-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form>
+      <div class="modal-card-head">
+        <p class="modal-card-title">Etes vous sûr de vouloir supprimer la race : </p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+      <div class="modal-card-body">
+        <p><span slot="race-label"></span> ?</p>
+      </div>
+      <div class="modal-card-foot">
+        <button class="button is-success">Confirmer</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+      <input type="hidden" name="id">
+    </form>
+  </div>
+</div>
+
+
+<!-- Template pour une race -->
+<template id="race-template">
+    <section class="message race is-info" slot="race-id">
+      <div class="message-header">
+        <div class="race-label" slot="race-label"></div>
+
+        <div class="none card-header">
+          <span class="icon ml-2"><i class="fas fa-solid fa-pen"></i></span>
+        </div>
+        
+        <div class="none card-header">
+          <span class="icon has-text-danger ml-2 delete-card-button"><i class="fas fa-trash-alt"></i></span>
+        </div>
+      </div>
+
+      <div class="message-body" slot="race-content">
+        <div class="black-text"><u>Compétence de race</u> : </div>
+        <div class="race-skill" slot="race-skill"></div>
+      </div>
+
+      <div class="message-body" slot="race-skills">
+        <div class="black-text"><u>Compétences primaires</u> : </div>
+        <div class="race-primary-skill" slot="race-primary-skill"></div>
+      </div>
+      <div class="message-body" slot="race-stats">
+        <div class="black-text"><u>Statistiques primaires</u> : </div>
+        <div class="race-primary-statistic" slot="race-primary-statistic"></div>
+      </div>
+    </section>
+</template>
+
+
+</html>

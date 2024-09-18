@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+    <title>RPG Dice Roller</title>
+
+    <link rel="stylesheet" href="./css/diceRoller.css">
+
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+</head>
+
+<body>
+    <header>
+        <a class="title1" href="/">RPG Character Builder</a>
+        <br>
+        <a class="title2" href="/diceroller.html">RPG Dice Roller</a>
+    </header>
+
+    <h2>Lancez vos dés !</h2>
+
+    <div id="dice6" class="welcome">Dé 6 : 
+        <button id="play-alone6" class="btn" type="button">Lancez vos dés<br>seul</button>
+        <button id="play-with-adversary6" class="btn" type="button">Lancez vos dés<br>contre un adversaire</button>
+    </div>
+    <div id="dice8" class="welcome">Dé 8 : 
+        <button id="play-alone8" class="btn" type="button">Lancez vos dés<br>seul</button>
+        <button id="play-with-adversary8" class="btn" type="button">Lancez vos dés<br>contre un adversaire</button>
+    </div>
+    <div id="dice10" class="welcome">Dé 10 : 
+        <button id="play-alone10" class="btn" type="button">Lancez vos dés<br>seul</button>
+        <button id="play-with-adversary10" class="btn" type="button">Lancez vos dés<br>contre un adversaire</button>
+    </div>
+    <div id="dice12" class="welcome">Dé 12 : 
+        <button id="play-alone12" class="btn" type="button">Lancez vos dés<br>seul</button>
+        <button id="play-with-adversary12" class="btn" type="button">Lancez vos dés<br>contre un adversaire</button>
+    </div>
+    <div id="dice20" class="welcome">Dé 20 : 
+        <button id="play-alone20" class="btn" type="button">Lancez vos dés<br>seul</button>
+        <button id="play-with-adversary20" class="btn" type="button">Lancez vos dés<br>contre un adversaire</button>
+    </div>
+ 
+    <div id="app" class="hidden">
+        <div class="form">
+            <form id="game-form">
+                <input
+                    type="range"
+                    id="dice-number-input"
+                    value="1"
+                    min="1"
+                    max="20"
+                >
+                <span id="dice-number">1</span>
+                <button class="btn">Valider le nombre de dés et lancer</button>
+            </form>
+        </div>
+        <div id="game">
+            <div class="board" id="player"></div>
+            <div class="board hidden" id="dealer"></div>
+        </div>
+    </div>
+
+    <script src="../js/diceRoller.js"></script>
+
+</body>
+</html>

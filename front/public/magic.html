@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+    <title>Magies</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+    <script defer src="./js/apps/magicApp.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <a class="title is-1 my-5" href="/">RPG Character Builder</a>
+  </header>
+
+  <main>
+    <div class="header-container">
+      <a class="title is-3 my-5 header-content" href="/class.html">Classes et Spécialisations</a>
+      <a class="title is-3 my-5 header-content" href="/primaryskill.html">Compétences Primaires</a>
+      <a class="title is-3 my-5 header-content" href="/race.html">Races</a>
+      <a class="title is-3 my-5 header-content" href="/primarystatistic.html">Statistiques Primaires</a>   
+    </div>
+
+    <div class="title is-2 my-5"><u>Magies</u></div>
+
+    <div class="flex-container">
+    <div id="magics-container" class="magic-container"></div>
+
+    <!-- Add a magic button -->
+    <section class="none message add-container">
+      <div class="message-header message-plus">
+        <div>Ajouter une magie</div>
+      </div>
+      <div class="message-body">
+        <button id="addMagicButton" class="button is-large is-fullwidth"><i class="fas fa-plus"></i></button>
+      </div>
+    </section>
+  </div>
+  </main>
+
+
+<!-- Add a magic modal -->
+<div class="modal" id="add-magic-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form>
+      <div class="modal-card-head">
+        <p class="modal-card-title">Ajouter une magie</p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+
+      <div class="modal-card-body">
+        <label class="label">Nom</label>
+        <input class="input" type="text" name="label" placeholder="Nom de la magie">
+      </div>
+
+      <div class="modal-card-foot">
+        <button class="button is-success">Ajouter</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit a magic modal -->
+<div class="modal" id="edit-magic-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form>
+      <div class="modal-card-head">
+        <p class="modal-card-title">Modifier une magie</p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+
+      <div class="modal-card-body">
+        <label class="label">Nom</label>
+        <input class="input" type="text" name="label" placeholder="Nom de la magie">
+      </div>
+
+      <div class="modal-card-foot">
+        <button class="button is-success">Modifier</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+      <input type="hidden" name="id">
+    </form>
+  </div>
+</div>
+
+<!-- Delete a magic modal -->
+<div class="modal" id="delete-magic-modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <form>
+      <div class="modal-card-head">
+        <p class="modal-card-title">Etes vous sûr de vouloir supprimer la magie : </p>
+        <button class="delete close" type="button" aria-label="close"></button>
+      </div>
+      <div class="modal-card-body">
+        <p><span slot="magic-label"></span> ?</p>
+      </div>
+      <div class="modal-card-foot">
+        <button class="button is-success">Confirmer</button>
+        <button class="button close" type="button">Annuler</button>
+      </div>
+      <input type="hidden" name="id">
+    </form>
+  </div>
+</div>
+
+
+<!-- Template pour une magie -->
+<template id="magic-template">
+    <section class="message magic is-info" slot="magic-id">
+      <div class="message-header">
+        <div class="magic-label" slot="magic-label"></div>
+
+        <div class="none card-header">
+          <span class="icon ml-2"><i class="fas fa-solid fa-pen"></i></span>
+        </div>
+
+        <div class="none card-header">
+          <span class="none icon has-text-danger ml-2 delete-card-button"><i class="fas fa-trash-alt"></i></span>
+        </div>
+      </div>
+  
+      <div class="message-body" slot="magic-content">
+      </div>
+    </section>
+</template>
+
+
+</html>

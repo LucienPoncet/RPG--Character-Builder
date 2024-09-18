@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Indie Flower' rel='stylesheet'>
+    <title>Personnage</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+    <script defer src="./js/apps/characterProfileApp.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <a class="title is-1 my-5" href="/">RPG Character Builder</a>
+  </header>
+
+  <main>
+    <div class="title is-2 my-5"><u>Profils des personnages</u></div>
+
+    <div class="flex-container">
+        <div id="characters-container" class="characters-profile-container"></div>
+    </div>
+
+    <template id="character-profile">
+        <div class="character-profile" slot="character-firstname"></div>
+        <div class="character-profile" slot="character-lastname"></div>
+        <div class="character-profile" slot="character-level"></div>
+        <div class="character-profile-img" slot="character-profile-img"></div>
+        <div class="character-profile">- - -</div>
+    </template>
+  </main>
+</body>

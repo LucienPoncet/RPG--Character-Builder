@@ -1,0 +1,17 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="title is-2 my-5"><u>Personnages</u></div>  
+    
+    <div class="chara-pages-container">
+      <ul>
+      <% for(const character of characters) { %>
+        <li class="p-3 col-lg-4">
+          <a href="/characterprofile/<%=character.id%>">
+            <div><%=character.firstname%></div>
+          </a>
+        </li>
+      <% } %>
+      </ul>
+    </div>
+
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,14 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="title is-2 my-5"><u>Profil du personnage</u></div>
+
+<div class="flex-container">
+    <div id="characters-container" class="characters-profile-container"></div>
+</div>
+
+    <div class="character-profile" slot="character-firstname">Prénom : <%=character.firstname%></div>
+    <div class="character-profile" slot="character-lastname">Nom : <%=character.lastname%></div>
+    <div class="character-profile" slot="character-level">Niveau : <%=character.level%></div>
+
+
+<%- include('./partials/footer.ejs') %>
